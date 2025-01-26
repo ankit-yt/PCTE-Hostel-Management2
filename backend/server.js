@@ -21,7 +21,13 @@ const io = socketIo(server); // Initialize socket.io
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+    {
+        origin: 'https://pcte-hostel-management-frontend.onrender.com', // Frontend URL
+        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+        credentials: true, // If cookies or authentication tokens are needed
+      }
+));
 
 // Middleware to serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
