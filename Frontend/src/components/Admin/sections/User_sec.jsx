@@ -12,7 +12,7 @@ function User_sec({ isDarkTheme }) {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/users');
+                const response = await axios.get('https://pcte-hostel-management-backend.onrender.com/api/users');
                 setUsers(response.data);
             } catch (err) {
                 setError(err.message);
@@ -25,7 +25,7 @@ function User_sec({ isDarkTheme }) {
     const handleDelete = async (userId) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/users/${userId}`);
+                await axios.delete(`https://pcte-hostel-management-backend.onrender.com/api/users/${userId}`);
                 setUsers(prev => prev.filter(user => user._id !== userId));
             } catch (err) {
                 setError(err.message);

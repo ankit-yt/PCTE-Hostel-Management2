@@ -14,7 +14,7 @@ function Hostel_rooms({isDarkTheme}) {
     useEffect(() => {
         const fetchRooms = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/rooms');
+                const response = await axios.get('https://pcte-hostel-management-backend.onrender.com/api/rooms');
                 setRooms(response.data);
                 setLoading(false);
             } catch (err) {
@@ -37,7 +37,7 @@ function Hostel_rooms({isDarkTheme}) {
     const addNewRoom = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/rooms', newRoom);
+            const response = await axios.post('https://pcte-hostel-management-backend.onrender.com/api/rooms', newRoom);
             setRooms([...rooms, response.data]);
             setNewRoom({ roomNumber: '', capacity: '', hostel: '' });
         } catch (err) {
@@ -48,7 +48,7 @@ function Hostel_rooms({isDarkTheme}) {
     const editExistingRoom = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://localhost:5000/api/rooms/${editRoom._id}`, {
+            const response = await axios.put(`https://pcte-hostel-management-backend.onrender.com/api/rooms/${editRoom._id}`, {
                 roomNumber: editRoom.roomNumber,
                 capacity: editRoom.capacity,
                 hostel: editRoom.hostel,
@@ -62,7 +62,7 @@ function Hostel_rooms({isDarkTheme}) {
 
     const deleteRoom = async (roomId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/rooms/${roomId}`);
+            await axios.delete(`https://pcte-hostel-management-backend.onrender.com/api/rooms/${roomId}`);
             setRooms(rooms.filter(room => room._id !== roomId));
         } catch (err) {
             setError(err.message);
@@ -78,7 +78,7 @@ function Hostel_rooms({isDarkTheme}) {
         }
     
         try {
-            const response = await axios.get(`http://localhost:5000/api/rooms/${roomId}/students`);
+            const response = await axios.get(`https://pcte-hostel-management-backend.onrender.com/api/rooms/${roomId}/students`);
             setStudents(response.data);
             setSelectedRoom(roomId);
         } catch (err) {
@@ -89,7 +89,7 @@ function Hostel_rooms({isDarkTheme}) {
 
     const deleteStudent = async (roomId, studentId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/rooms/${roomId}/students/${studentId}`);
+            await axios.delete(`https://pcte-hostel-management-backend.onrender.com/api/rooms/${roomId}/students/${studentId}`);
             setStudents(students.filter(student => student._id !== studentId));
         } catch (err) {
             setError(err.message);
@@ -108,7 +108,7 @@ function Hostel_rooms({isDarkTheme}) {
         e.preventDefault();
         if (selectedRoom) {
             try {
-                const response = await axios.post(`http://localhost:5000/api/rooms/${selectedRoom}/students`, newStudent);
+                const response = await axios.post(`https://pcte-hostel-management-backend.onrender.com/api/rooms/${selectedRoom}/students`, newStudent);
                 setStudents([...students, response.data.students[response.data.students.length - 1]]);
                 setNewStudent({ rollNumber: '', name: '' });
             } catch (err) {

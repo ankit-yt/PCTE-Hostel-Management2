@@ -51,7 +51,7 @@ function Admin() {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/admin"); // Fetch data from the admin endpoint
+        const response = await axios.get("https://pcte-hostel-management-backend.onrender.com/api/admin"); // Fetch data from the admin endpoint
         setAdminData(response.data);
       } catch (error) {
         console.error("Error fetching admin data:", error);

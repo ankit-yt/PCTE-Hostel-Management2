@@ -7,7 +7,7 @@ import { TfiAnnouncement } from "react-icons/tfi";
 
 
 
-const socket = io("http://localhost:5000"); // Your backend URL
+const socket = io("https://pcte-hostel-management-backend.onrender.com"); // Your backend URL
 
 function AdminDashboard({isDarkTheme}) {
   const [students, setStudents] = useState([]);
@@ -21,11 +21,11 @@ function AdminDashboard({isDarkTheme}) {
     const fetchData = async () => {
       try {
         // Fetch students by role
-        const studentsRes = await axios.get("http://localhost:5000/api/users?role=student");
+        const studentsRes = await axios.get("https://pcte-hostel-management-backend.onrender.com/api/users?role=student");
         // Fetch other data
-        const roomsRes = await axios.get("http://localhost:5000/api/rooms");
-        const complaintsRes = await axios.get("http://localhost:5000/api/complaints");
-        const announcementsRes = await axios.get("http://localhost:5000/api/announcements");
+        const roomsRes = await axios.get("https://pcte-hostel-management-backend.onrender.com/api/rooms");
+        const complaintsRes = await axios.get("https://pcte-hostel-management-backend.onrender.com/api/complaints");
+        const announcementsRes = await axios.get("https://pcte-hostel-management-backend.onrender.com/api/announcements");
         
         setStudents(studentsRes.data);
         setAvailableRooms(roomsRes.data.available || 0);

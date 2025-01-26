@@ -4,7 +4,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import { motion } from "motion/react"
 
-const socket = io('http://localhost:5000'); // Connect to the server
+const socket = io('https://pcte-hostel-management-backend.onrender.com'); // Connect to the server
 
 function Announcement({isDarkTheme}) {
     const [announcements, setAnnouncements] = useState([]);
@@ -14,7 +14,7 @@ function Announcement({isDarkTheme}) {
     useEffect(() => {
         const fetchAnnouncements = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/announcements');
+                const response = await axios.get('https://pcte-hostel-management-backend.onrender.com/api/announcements');
                 setAnnouncements(response.data);
             } catch (err) {
                 setError(err.message);
@@ -42,7 +42,7 @@ function Announcement({isDarkTheme}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/announcements', newAnnouncement);
+            const response = await axios.post('https://pcte-hostel-management-backend.onrender.com/api/announcements', newAnnouncement);
             setAnnouncements((prev) => [response.data, ...prev]);
             setNewAnnouncement({ title: '', content: '' });
         } catch (err) {
@@ -53,7 +53,7 @@ function Announcement({isDarkTheme}) {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this announcement?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/announcements/${id}`);
+                await axios.delete(`https://pcte-hostel-management-backend.onrender.com/api/announcements/${id}`);
                 setAnnouncements((prev) => prev.filter((announcement) => announcement._id !== id));
             } catch (err) {
                 setError(err.message);
