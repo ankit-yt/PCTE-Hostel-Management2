@@ -30,7 +30,7 @@ function StudentProfile({ studentId, isDarkTheme }) {
     useEffect(() => {
         const fetchStudentData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/users/${studentId}`);
+                const response = await axios.get(`https://pcte-hostel-management-backend.onrender.com/api/users/${studentId}`);
                 setStudentData(response.data);
             } catch (err) {
                 setError(err.response ? err.response.data.message : err.message);
@@ -54,7 +54,7 @@ function StudentProfile({ studentId, isDarkTheme }) {
                 <div className="relative z-10 flex flex-col items-center space-y-6">
                     <div className="relative">
                         <img 
-                            src={`http://localhost:5000/${studentData.image}`} 
+                            src={`https://pcte-hostel-management-backend.onrender.com/${studentData.image}`} 
                             alt={`${studentData.name}'s profile`}
                             className="w-40 h-40 rounded-full border-8 border-gradient-to-r from-pink-500 via-purple-600 to-indigo-500 object-cover shadow-2xl transform transition-transform duration-500 hover:scale-110"
                         />

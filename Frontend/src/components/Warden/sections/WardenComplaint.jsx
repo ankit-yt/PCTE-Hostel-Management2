@@ -48,7 +48,7 @@ function WardenComplaint({isDarkTheme}) {
     useEffect(() => {
         const fetchComplaints = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/complaints');
+                const response = await axios.get('https://pcte-hostel-management-backend.onrender.com/api/complaints');
                 setComplaints(response.data);
                 setLoading(false);
             } catch (err) {
@@ -65,7 +65,7 @@ function WardenComplaint({isDarkTheme}) {
         if (!announcement.trim()) return; // Prevent empty announcement submissions
 
         try {
-            const response = await axios.put(`http://localhost:5000/api/complaints/${complaintId}/resolve`, {
+            const response = await axios.put(`https://pcte-hostel-management-backend.onrender.com/api/complaints/${complaintId}/resolve`, {
                 announcement,
             });
             setComplaints((prev) =>
@@ -81,7 +81,7 @@ function WardenComplaint({isDarkTheme}) {
 
     const handleDelete = async (complaintId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/complaints/${complaintId}`);
+            await axios.delete(`https://pcte-hostel-management-backend.onrender.com/api/complaints/${complaintId}`);
             setComplaints((prev) => prev.filter((complaint) => complaint._id !== complaintId));
         } catch (err) {
             setError(`Failed to delete complaint: ${err.message}`);

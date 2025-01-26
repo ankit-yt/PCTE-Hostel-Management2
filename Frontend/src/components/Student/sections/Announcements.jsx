@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 
-const socket = io("http://localhost:5000"); // Your backend URL
+const socket = io("https://pcte-hostel-management-backend.onrender.com"); // Your backend URL
 
 function Announcements({ isDarkTheme }) {
     const [announcements, setAnnouncements] = useState([]);
@@ -34,7 +34,7 @@ function Announcements({ isDarkTheme }) {
     useEffect(() => {
         const fetchAnnouncements = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/announcements');
+                const response = await axios.get('https://pcte-hostel-management-backend.onrender.com/api/announcements');
                 setAnnouncements(response.data);
                 setLoading(false);
             } catch (error) {

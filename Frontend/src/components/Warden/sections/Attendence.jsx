@@ -13,7 +13,7 @@ function Attendance({isDarkTheme}) {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/users?role=student");
+        const response = await axios.get("https://pcte-hostel-management-backend.onrender.com/api/users?role=student");
         setStudents(response.data);
         const initialStatus = response.data.reduce((acc, student) => {
           acc[student._id] = "";
@@ -36,7 +36,7 @@ function Attendance({isDarkTheme}) {
       try {
         const attendanceChecks = await Promise.all(
           students.map((student) =>
-            axios.get(`http://localhost:5000/api/attendance/today/${student._id}`)
+            axios.get(`https://pcte-hostel-management-backend.onrender.com/api/attendance/today/${student._id}`)
           )
         );
 
@@ -66,12 +66,12 @@ function Attendance({isDarkTheme}) {
         students.map(async (student) => {
           const status = attendanceStatus[student._id];
           const existingAttendanceResponse = await axios.get(
-            `http://localhost:5000/api/attendance/${student._id}/${date}`
+            `https://pcte-hostel-management-backend.onrender.com/api/attendance/${student._id}/${date}`
           );
           const existingAttendance = existingAttendanceResponse.data;
 
           if (existingAttendance.length === 0) {
-            await axios.post("http://localhost:5000/api/attendance", {
+            await axios.post("https://pcte-hostel-management-backend.onrender.com/api/attendance", {
               studentId: student._id,
               date,
               status,
@@ -93,7 +93,7 @@ function Attendance({isDarkTheme}) {
       await Promise.all(
         students.map(async (student) => {
           const existingAttendanceResponse = await axios.get(
-            `http://localhost:5000/api/attendance/${student._id}/${date}`
+            `https://pcte-hostel-management-backend.onrender.com/api/attendance/${student._id}/${date}`
           );
           const existingAttendance = existingAttendanceResponse.data;
           if (existingAttendance.length > 0) {
@@ -115,13 +115,13 @@ function Attendance({isDarkTheme}) {
       await Promise.all(
         students.map(async (student) => {
           const existingAttendanceResponse = await axios.get(
-            `http://localhost:5000/api/attendance/${student._id}/${date}`
+            `https://pcte-hostel-management-backend.onrender.com/api/attendance/${student._id}/${date}`
           );
           const existingAttendance = existingAttendanceResponse.data;
 
           if (existingAttendance.length > 0) {
             const attendanceId = existingAttendance[0]._id;
-            await axios.put(`http://localhost:5000/api/attendance/${attendanceId}`, {
+            await axios.put(`https://pcte-hostel-management-backend.onrender.com/api/attendance/${attendanceId}`, {
               status: attendanceStatus[student._id],
             });
           }

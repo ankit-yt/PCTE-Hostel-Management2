@@ -39,7 +39,7 @@ function Student() {
                         setStudentId(storedStudentId); // Set the studentId state
     
                         // Fetch student data using the studentId
-                        const response = await axios.get(`http://localhost:5000/api/users/${storedStudentId}`);
+                        const response = await axios.get(`https://pcte-hostel-management-backend.onrender.com/api/users/${storedStudentId}`);
                         setStudentData(response.data);
                         setStudentName(response.data.name); // Assuming the name is in the response data
                         setStudentroom(response.data.roomNumber); // Assuming the name is in the response data
