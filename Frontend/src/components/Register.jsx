@@ -22,7 +22,7 @@ function Register() {
         const fetchRooms = async () => {
             if (userData.hostel) {
                 try {
-                    const response = await axios.get('http://localhost:5000/api/rooms', {
+                    const response = await axios.get('https://pcte-hostel-management-backend.onrender.com/api/rooms', {
                         params: { hostel: userData.hostel }
                     });
                     const filteredRooms = response.data.filter(room => room.occupied < room.capacity);
@@ -61,7 +61,7 @@ function Register() {
             formData.append(key, userData[key]);
         }
         try {
-            const response = await axios.post('http://localhost:5000/api/users/register', formData, {
+            const response = await axios.post('https://pcte-hostel-management-backend.onrender.com/api/users/register', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Specify the content type
                 }
