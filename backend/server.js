@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-
+const cors = require('cors');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/users');
 const studentRoutes = require('./routes/students');
@@ -21,6 +21,7 @@ const io = socketIo(server); // Initialize socket.io
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Middleware to serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
